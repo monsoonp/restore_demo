@@ -48,7 +48,7 @@ const App = () => {
           )}
           <View style={styles.body}>
             <Text>can i get this?</Text>
-            <Text>Jack of all trades, none of master</Text>
+            <Text>Jack of all trades</Text>
           </View>
           {/*
           <View style={styles.body}>
