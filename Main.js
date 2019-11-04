@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,60 +14,76 @@ import {
   View,
   Text,
   StatusBar,
+  Dimensions,
 } from 'react-native';
 
 import {
-  Header,
+  // Header,
   // LearnMoreLinks,
   Colors,
   // DebugInstructions,
   // ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
 import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
+// import Orientation from 'react-native-orientation';
+// import {Svg, G, Line, Circle, Rect, Text} from 'react-native-svg';
+// import {color, t} from 'react-native-tailwindcss';
+import SideBar from './src/components/SideBar';
+import Diagram from './src/components/Diagram';
 
 // const App: () => React$Node = () => {
-const App = () => {
+const Main = () => {
+  // const initial = Orientation.getInitialOrientation();
+  useEffect(() => {});
   return (
-    <ReactNativeZoomableView
-      zoomEnabled={true}
-      maxZoom={3}
-      minZoom={0.2}
-      initialZoom={1}
-      bindToBorders={true}>
+    <View style={{flex: 1}}>
       <StatusBar barStyle="dark-content" />
+      {global.HermesInternal == null ? null : (
+        <View style={styles.engine}>
+          <Text style={styles.footer}>Engine: Hermes</Text>
+        </View>
+      )}
+      <SideBar />
+      <ReactNativeZoomableView
+        stye={styles.container}
+        zoomEnabled={true}
+        maxZoom={2}
+        minZoom={0.5}
+        initialZoom={1}
+        zoomStep={0.25}>
+        <Diagram />
+      </ReactNativeZoomableView>
+      {/*
       <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
+          <ScrollView
+            contentInsetAdjustmentBehavior="automatic"
+            style={styles.scrollView}>
+            <View style={styles.body}>
+              <Text>can i get this?</Text>
+              <Text>Jack of all trades</Text>
             </View>
-          )}
-          <View style={styles.body}>
-            <Text>can i get this?</Text>
-            <Text>Jack of all trades</Text>
-          </View>
-          {/*
-          <View style={styles.body}>
-            <LearnMoreLinks />
-          </View>
-          */}
-        </ScrollView>
-      </SafeAreaView>
-    </ReactNativeZoomableView>
+
+            <View style={styles.body}>
+              <LearnMoreLinks />
+            </View>
+
+          </ScrollView>
+        </SafeAreaView>
+      */}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   scrollView: {
     backgroundColor: Colors.lighter,
   },
   engine: {
     position: 'absolute',
-    right: 0,
+    right: 20,
   },
   body: {
     backgroundColor: Colors.white,
@@ -100,4 +116,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Main;
